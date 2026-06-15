@@ -1,0 +1,61 @@
+@use "../abstracts/variables" as vars;
+
+@mixin hero {
+  font-family: vars.$font-home-main;
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  line-height: 1.2;
+  text-align: center;
+  @content;
+}
+
+@mixin title {
+  @content;
+}
+
+@mixin subtitle {
+  font-family: vars.$font-home-main;
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  line-height: 1.2;
+  text-align: center;
+  @content;
+}
+
+@mixin paragraph {
+  font-family: vars.$font-home-main;
+  font-weight: 300;
+  font-size: 1.125rem; // 18px
+  line-height: 1.2;
+  text-align: center;
+}
+
+@mixin alert {
+  font-family: vars.$font-home-main;
+  font-weight: 300;
+  font-size: 1.0625rem; // 17px
+  line-height: 1.2;
+  text-align: center;
+  @content;
+}
+
+@mixin error {
+  font-family: vars.$font-home-main;
+  font-weight: 500;
+  font-size: 1rem; // 16px
+  @content;
+}
+
+@mixin meta {
+  font-family: vars.$font-logo;
+  font-weight: 400;
+  font-size: 1.75rem; // 28px
+  @content;
+}
+
+@mixin bold {
+  font-family: vars.$font-logo;
+  font-weight: 400;
+  font-size: 1.75rem; // 28px
+  @content;
+}
