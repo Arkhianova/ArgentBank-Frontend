@@ -1,13 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setCredentials } from '../store/auth/authSlice';
+import { profileApi } from './profileApi'
+import { apiSlice } from './apiSlice';
 
-export const authApi = createApi({
-  reducerPath: 'authApi',
-
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3001/api/v1',
-  }),
-
+export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     signIn: builder.mutation({
       query: (credentials) => ({
@@ -22,23 +18,16 @@ export const authApi = createApi({
           const token = data.body.token
           dispatch(setCredentials({ token }))
           localStorage.setItem('token', token)
+          // Fetch user profile after successful login
+          dispatch(profileApi.endpoints.getProfile.initiate()
+)
 
         } catch (err) {
           console.error('Login failed', err)
         }
       },
     }),
-    getProfile: builder.query({
-      query: () => ({
-        url: "/user/profile",
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-      }),
-    }),
   }),
-
 })
 
-export const { useSignInMutation, useGetProfileQuery } = authApi
+export const { useSignInMutation } = authApi

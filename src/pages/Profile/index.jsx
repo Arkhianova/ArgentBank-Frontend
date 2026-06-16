@@ -1,10 +1,18 @@
-import styles from "./User.module.scss";
+import styles from "./Profile.module.scss";
+import { useGetProfileQuery } from "../../services/profileApi.js";
 
-export default function User() {
+export default function Profile() {
+  const { data: profile, isLoading } = useGetProfileQuery();
+
+  if (isLoading) return null;
+
+  const firstName = profile?.body?.firstName;
+  const lastName = profile?.body?.lastName;
+
   return (
     <div className={`${styles.bgDark} ${styles.main}`}>
       <div className={styles.header}>
-        <h1>Welcome back<br />Tony Jarvis!</h1>
+        <h1>Welcome back<br />{firstName} {lastName}!</h1>
         <button className={styles.editButton}>Edit Name</button>
       </div>
       <h2 className="srOnly">Accounts</h2>

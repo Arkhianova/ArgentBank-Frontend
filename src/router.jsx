@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AppLayout from "./layout/AppLayout.jsx";
+import AppLayout from "./layout/AppLayout";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
-import User from "./pages/User";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 export const router = createBrowserRouter(
@@ -16,7 +16,7 @@ export const router = createBrowserRouter(
       {
         element: <ProtectedRoute />,
         children: [
-          { path: "/profile", element: <User /> },
+          { path: "/profile", element: <Profile /> },
         ],
       },
       { path: "404", element: <NotFound /> },

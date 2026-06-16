@@ -8,7 +8,7 @@ export default function SignInForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
-  const [signIn, { isLoading }] = useSignInMutation()
+  const [signIn, { isLoading }] = useSignInMutation();
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
