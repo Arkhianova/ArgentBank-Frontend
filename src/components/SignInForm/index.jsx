@@ -1,7 +1,7 @@
 import styles from "./SignInForm.module.scss";
 import { useSignInMutation } from "../../services/authApi";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
 export default function SignInForm() {
 
@@ -23,7 +23,7 @@ export default function SignInForm() {
   };
 
   return (
-
+    
     <div className={`${styles.main} ${styles.bgDark}`}>
       <section className={styles.signInContent}>
         <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
@@ -59,6 +59,7 @@ export default function SignInForm() {
         </form>
         {error && <p className={styles.error}>{error}</p>}
       </section>
-    </div>
+      </div>
+
   );
 }

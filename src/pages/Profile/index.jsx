@@ -1,9 +1,18 @@
 import styles from "./Profile.module.scss";
 import { useGetProfileQuery } from "../../services/profileApi.js";
+import EditForm from "../../components/EditForm";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setEditionMode } from "../../store/profile/profileSlice";
+
 
 export default function Profile() {
   const { data: profile, isLoading } = useGetProfileQuery();
-
+  const isEditingProfile = useSelector((state) => state.profile.isEditingProfile)
+  const dispatch = useDispatch()
+  const showEditForm = () => {
+    dispatch(setEditionMode(true))
+  }
   if (isLoading) return null;
 
   const firstName = profile?.body?.firstName;
@@ -11,10 +20,13 @@ export default function Profile() {
 
   return (
     <div className={`${styles.bgDark} ${styles.main}`}>
-      <div className={styles.header}>
-        <h1>Welcome back<br />{firstName} {lastName}!</h1>
-        <button className={styles.editButton}>Edit Name</button>
-      </div>
+      {isEditingProfile
+        ? <><EditForm /></>
+        : <div className={styles.header}>
+            <h1>Welcome back<br />{firstName} {lastName}!</h1>
+            <button className={styles.editButton} onClick={showEditForm} >Edit Name</button>
+          </div>
+      }
       <h2 className="srOnly">Accounts</h2>
       <section className={styles.account}>
         <div className={styles.accountContentWrapper}>

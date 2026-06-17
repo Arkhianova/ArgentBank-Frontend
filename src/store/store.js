@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { apiSlice } from '../services/apiSlice';
+import profileReducer from './profile/profileSlice';
 import authReducer from './auth/authSlice';
 
 export const store = configureStore({
@@ -8,6 +9,7 @@ export const store = configureStore({
     // Add the generated reducer as a specific top-level slice
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authReducer,
+    profile: profileReducer,
 
   },
   // Adding the api middleware enables caching, invalidation, polling,
