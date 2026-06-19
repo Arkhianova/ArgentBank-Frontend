@@ -27,7 +27,15 @@ export const authApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    signUp: builder.mutation({
+      query: (formData) => ({
+        url: '/user/signup',
+        method: 'POST',
+        body: formData,
+      }),
+
+    }),
   }),
 })
 
-export const { useSignInMutation } = authApi
+export const { useSignInMutation, useSignUpMutation } = authApi

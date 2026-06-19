@@ -44,10 +44,14 @@ const showUsername = token && username
             Sign Out
           </button>
         </>
-      ) : (
+      ) : (<>
         <NavLink to="/login" className={styles.authItem}>
           <i className="fa fa-user-circle"></i> Sign In
         </NavLink>
+        <NavLink to="/signup" className={styles.authItem}>
+          Sign Up
+        </NavLink>
+        </>
       )}
     </div>
   )

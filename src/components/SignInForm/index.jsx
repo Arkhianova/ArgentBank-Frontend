@@ -2,20 +2,25 @@ import styles from "./SignInForm.module.scss";
 import { useSignInMutation } from "../../services/authApi";
 import { useNavigate } from "react-router-dom";
 import { useState, Fragment } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function SignInForm() {
 
-  const [email, setEmail] = useState("")
+ const location = useLocation();
+
+  const [email, setEmail] = useState(location.state?.email || "")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [signIn, { isLoading }] = useSignInMutation();
   const navigate = useNavigate()
 
+ 
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
    try {
-     await signIn({ email, password }).unwrap()
+     await signIn({ email, password })
     navigate("/profile")
     } catch (err) {
       setError(err.data?.message)
@@ -50,6 +55,7 @@ export default function SignInForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
+              autoFocus={email ? true : false}
             />
           </div>
 
